@@ -1,3 +1,6 @@
+import os
+import sys
+sys.path.append(os.path.dirname(__file__))
 import streamlit as st
 import numpy as np
 import joblib
@@ -201,7 +204,9 @@ div[data-testid="stButton"] > button:hover {
 # ─── Load Model ─────────────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    return joblib.load("../backend/gradient_boosting_model.pkl")
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    return joblib.load(os.path.join(BASE_DIR, "../backend/gradient_boosting_model.pkl"))
+
 
 model = load_model()
 
